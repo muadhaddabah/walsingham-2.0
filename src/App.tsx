@@ -700,7 +700,7 @@ export default function App() {
           </Link>
 
           <p className="text-stone-500 text-sm">
-            © {new Date().getFullYear()} Walsingham Meat Market. All rights reserved.
+            © 2006 Walsingham Meat Market. All rights reserved.
           </p>
 
           <div className="flex gap-6">
