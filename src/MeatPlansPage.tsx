@@ -17,7 +17,7 @@ const FAQ_ITEMS = [
   {
     question: "How do I place an order?",
     answer:
-      "You can place an order by calling us directly, visiting our shop, or sending a message through our contact form. We'll confirm availability and arrange a pickup time that works for you.",
+      "You can place an order by calling us directly or visiting our shop. We'll confirm availability and arrange a pickup time that works for you.",
   },
   {
     question: "Can I customize the cuts in my plan?",
@@ -27,12 +27,12 @@ const FAQ_ITEMS = [
   {
     question: "How should I store my meat?",
     answer:
-      "All plans come vacuum-sealed and flash-frozen for maximum freshness. Store in your freezer and thaw in the refrigerator 24 hours before cooking. Properly stored, cuts will stay fresh for 6–12 months.",
+      "Store in your freezer and thaw in the refrigerator 24 hours before cooking. Properly stored, cuts will stay fresh for 6–12 months.",
   },
   {
     question: "Do you offer delivery?",
     answer:
-      "We offer free local pickup from our shop. Delivery is available within a 25-mile radius for a small fee. Contact us for delivery scheduling and pricing.",
+      "We offer free local pickup from our shop. Delivery is available within a short radius for a small fee depending on order size. Contact us for delivery scheduling and pricing.",
   },
   {
     question: "What's the difference between plans and custom orders?",
@@ -85,7 +85,7 @@ export default function MeatPlansPage() {
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-3 gap-6">
           {[
             { icon: Scale, label: "Weighed Fresh" },
-            { icon: Truck, label: "Local Pickup" },
+            { icon: Truck, label: "Pickup & Local Delivery" },
             { icon: ShieldCheck, label: "Quality Guaranteed" },
           ].map(({ icon: Icon, label }, i) => (
             <motion.div

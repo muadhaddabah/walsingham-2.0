@@ -8,13 +8,18 @@ import {
   Menu,
   X,
   Beef,
+  Leaf,
   Utensils,
   ShieldCheck,
   Hand,
+  Fish,
+  Sandwich,
+  Wallet,
+  Gift,
 } from "lucide-react";
 import { useState } from "react";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
-import { BUSINESS_INFO, HOMEPAGE_MEAT_PLANS, PICK_FIVE, DEAL_SECTIONS } from "./constants";
+import { BUSINESS_INFO, HOMEPAGE_MEAT_PLANS, PICK_FIVE, DEAL_SECTIONS, DELI_PACKAGE, SEAFOOD_MARKET } from "./constants";
 import MeatPlansPage from "./MeatPlansPage";
 
 function HomePage() {
@@ -39,7 +44,7 @@ function HomePage() {
             className="max-w-2xl"
           >
             <span className="inline-block px-4 py-1.5 bg-red-800 text-white text-xs font-bold uppercase tracking-widest rounded-full mb-6">
-              Est. 1984 • Local Butcher
+              Est. 2006 • Local Butcher
             </span>
             <h1 className="font-serif text-5xl md:text-7xl text-white font-bold leading-tight mb-8">
               Premium Cuts, <br />
@@ -49,7 +54,7 @@ function HomePage() {
               Experience the difference of locally sourced, expertly butchered meats.
               From family bundles to bulk beef, we provide quality you can taste.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 mb-4">
               <Link
                 to="/meat-plans"
                 className="inline-flex items-center justify-center px-8 py-4 bg-white text-stone-900 font-bold rounded-full hover:bg-stone-100 transition-all group"
@@ -59,9 +64,9 @@ function HomePage() {
               </Link>
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center px-8 py-4 border-2 border-white/30 text-white font-bold rounded-full hover:bg-white/10 transition-all"
+                className="inline-flex items-center justify-center px-8 py-4  border-2 border-white/30 text-white font-bold rounded-full hover:bg-white/10 transition-all"
               >
-                Visit Our Shop
+                Find Our Shop
               </a>
             </div>
           </motion.div>
@@ -70,7 +75,7 @@ function HomePage() {
 
       {/* Features Bar */}
       <div className="bg-stone-900 py-12">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="flex items-center gap-4 text-white">
             <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
               <Beef className="w-6 h-6" />
@@ -91,6 +96,15 @@ function HomePage() {
           </div>
           <div className="flex items-center gap-4 text-white">
             <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+              <Leaf className="w-6 h-6" />
+            </div>
+            <div>
+              <h3 className="font-bold">Fresh Greens</h3>
+              <p className="text-sm text-stone-400">Garden-fresh produce daily</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-4 text-white">
+            <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
               <Utensils className="w-6 h-6" />
             </div>
             <div>
@@ -98,6 +112,27 @@ function HomePage() {
               <p className="text-sm text-stone-400">Never frozen, always fresh</p>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* EBT Acceptance Banner */}
+      <div className="bg-emerald-700">
+        <div className="max-w-7xl mx-auto px-6 py-5">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 text-white"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                <Wallet className="w-5 h-5" />
+              </div>
+              <span className="font-bold text-lg">We Accept EBT & Food Stamps</span>
+            </div>
+            <span className="hidden sm:block text-emerald-300">•</span>
+            <p className="text-emerald-200 text-sm text-center sm:text-left">Shop fresh meats, seafood, and groceries with your SNAP benefits</p>
+          </motion.div>
         </div>
       </div>
 
@@ -235,12 +270,96 @@ function HomePage() {
         </div>
       </section>
 
+      {/* Deli & Seafood Section */}
+      <section id="deli-seafood" className="section-padding bg-stone-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            {/* Deli Package Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className="bg-white rounded-3xl border border-stone-200 shadow-lg overflow-hidden">
+                <div className=" bg-stone-900 px-8 py-5 flex items-center gap-3">
+                  <Sandwich className="w-6 h-6 text-white" />
+                  <h3 className="font-serif text-xl font-bold text-white">{DELI_PACKAGE.title}</h3>
+                </div>
+                <div className="p-8">
+                  <div className="text-center mb-6">
+                    <span className="text-5xl font-bold text-stone-900">{DELI_PACKAGE.price}</span>
+                    <p className="text-stone-500 text-sm font-medium mt-1">complete package</p>
+                  </div>
+                  <ul className="space-y-3 mb-8">
+                    {DELI_PACKAGE.items.map((item) => (
+                      <li key={item} className="flex items-center gap-3 text-stone-700 text-sm">
+                        <Check className="w-4 h-4 text-red-800 shrink-0" />
+                        <span className="font-medium">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <a
+                    href={`tel:${BUSINESS_INFO.phone}`}
+                    className="w-full py-4 bg-red-800 text-white font-bold rounded-full hover:bg-stone-800 transition-all flex items-center justify-center gap-2"
+                  >
+                    <Phone className="w-5 h-5" />
+                    Call to Order
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Seafood Market */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              viewport={{ once: true }}
+            >
+              <div className="bg-white rounded-3xl border border-stone-200 shadow-lg overflow-hidden">
+                <div className="bg-stone-900 px-8 py-5 flex items-center gap-3">
+                  <Fish className="w-6 h-6 text-white" />
+                  <h3 className="font-serif text-xl font-bold text-white">{SEAFOOD_MARKET.title}</h3>
+                </div>
+                <div className="p-8">
+                  <p className="text-stone-500 text-sm mb-6">Seafood available daily — call for today's pricing and availability.</p>
+                  <div className="grid grid-cols-2 gap-3 mb-8">
+                    {SEAFOOD_MARKET.items.map((item, index) => (
+                      <motion.div
+                        key={item}
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.03 }}
+                        viewport={{ once: true }}
+                        className="flex items-center gap-3 bg-stone-50 rounded-xl px-4 py-3 border border-stone-100 hover:border-stone-900/20 hover:shadow-sm transition-all group"
+                      >
+                        <div className="w-7 h-7 rounded-full bg-stone-100 group-hover:bg-stone-900/10 flex items-center justify-center shrink-0 transition-colors">
+                          <Fish className="w-3.5 h-3.5 text-stone-400 group-hover:text-stone-900 transition-colors" />
+                        </div>
+                        <span className="text-stone-700 font-medium text-sm">{item}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                  <a
+                    href={`tel:${BUSINESS_INFO.phone}`}
+                    className="w-full py-4 bg-red-800 text-white font-bold rounded-full hover:bg-red-900 transition-all flex items-center justify-center gap-2"
+                  >
+                    <Phone className="w-5 h-5" />
+                    Call for Pricing
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Pricing Section */}
       <section id="plans" className="section-padding bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="font-serif text-4xl md:text-5xl font-bold text-stone-900 mb-4">
-              Our Meat Plans
+              Featured Meat Plans
             </h2>
             <div className="w-24 h-1 bg-red-800 mx-auto mb-6"></div>
             <p className="text-stone-600 max-w-2xl mx-auto text-lg">
@@ -269,18 +388,15 @@ function HomePage() {
                   </span>
                 )}
 
-                <div className="mb-8">
+                <div className="mb-6">
                   <h3 className="font-serif text-2xl font-bold text-stone-900 mb-2">{plan.title}</h3>
                   <p className="text-stone-500 text-sm mb-4">{plan.description}</p>
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-4xl font-bold text-stone-900">{plan.price}</span>
-                    <span className="text-stone-500 font-medium">/ {plan.weight}</span>
-                  </div>
+                  <span className="text-4xl font-bold text-stone-900">{plan.price}</span>
                 </div>
 
                 <div className="flex-grow">
                   <p className="text-xs font-bold text-stone-400 uppercase tracking-widest mb-4">Included Cuts</p>
-                  <ul className="space-y-3 mb-8">
+                  <ul className="space-y-2 mb-6">
                     {plan.items.map((item) => (
                       <li key={item} className="flex items-start gap-3 text-stone-700 text-sm">
                         <Check className="w-4 h-4 text-red-800 mt-0.5 shrink-0" />
@@ -289,6 +405,15 @@ function HomePage() {
                     ))}
                   </ul>
                 </div>
+
+                {plan.bonus && (
+                  <div className="flex items-center gap-2 bg-green-50 border border-green-200 rounded-xl px-4 py-3 mb-6">
+                    <Gift className="w-4 h-4 text-green-700 shrink-0" />
+                    <span className="text-green-800 text-xs font-bold">
+                      {plan.bonus}
+                    </span>
+                  </div>
+                )}
 
                 <a
                   href="#contact"
@@ -341,7 +466,7 @@ function HomePage() {
               referrerPolicy="no-referrer"
             />
             <div className="absolute -bottom-8 -right-8 bg-red-800 text-white p-8 rounded-2xl hidden md:block">
-              <p className="text-4xl font-serif font-bold mb-1">40+</p>
+              <p className="text-4xl font-serif font-bold mb-1">20+</p>
               <p className="text-sm font-bold uppercase tracking-widest opacity-80">Years of Quality</p>
             </div>
           </div>
@@ -354,7 +479,7 @@ function HomePage() {
             </h2>
             <p className="text-lg text-stone-600 mb-6 leading-relaxed">
               At Walsingham Meat Market, we believe that great meals start with great ingredients.
-              Since 1984, we've partnered with local farmers who share our commitment to sustainable
+              Since 2006, we've partnered with local farmers who share our commitment to sustainable
               and ethical practices.
             </p>
             <p className="text-lg text-stone-600 mb-10 leading-relaxed">
